@@ -8,7 +8,7 @@ class Scraper
 
     def get_page
       doc = Nokogiri::HTML(open("http://learn-co-curriculum.github.io/site-for-scraping/courses"))
-      #parses html link in Nokogiri
+      #parses html link in Nokogiri.
       #doc.css(".post").each do |post|
       #  course = Course.new
       #  course.title = post.css("h2").text
@@ -33,22 +33,26 @@ class Scraper
         #takes everything between the <date> and </date> and makes it a the schedule attribute
         course.description = post.css("p").text
         #takes everything between the <p> and </p> and makes it a description attribute.
-      end
+        end
     end
 
     def print_courses
-    self.make_courses
+      binding.pry
+      self.make_courses
       Course.all.each do |course|
         if course.title
           puts "Title: #{course.title}"
-          puts "  Schedule: #{
-          course.schedule}"
+          #puts the title attribute in a string.
+          puts "  Schedule: #{course.schedule}"
+          #puts the schedule in a string.
           puts "  Description: #{course.description}"
+          #puts the description attribute in a string.
         end
       end
     end
-    Scraper.new.get_page
 end
+
+Scraper.new.print_courses #this is calling the method on a new instance of Scraper class
 
 #ruby lib/scraper.rb how to run ruby on the rb file
 #doc how to see xcode
